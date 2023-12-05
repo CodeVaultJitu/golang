@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	"strings"
 )
 
 // func main() {
@@ -48,26 +47,50 @@ import (
 
 // }
 
-func isVowel(args string) string {
+// func isVowel(args string) string {
 
-	detect := strings.ContainsAny(args, "aeiou")
+// 	//indexany, containsany
+// 	detect := strings.IndexAny(args, "aeiou")
 
-	if detect {
-		return fmt.Sprintf("%q is a vowel\n", args[0])
-	} else if args[0] == 'y' || args[0] == 'w' {
-		return fmt.Sprintf("%q is sometimes a vowel, sometimes not\n", args[0])
-	} else {
-		return fmt.Sprintf("%q is a consonant\n", args[0])
+// 	if detect != -1 {
+// 		return fmt.Sprintf("%q is a vowel\n", args[0])
+// 	} else if args[0] == 'y' || args[0] == 'w' {
+// 		return fmt.Sprintf("%q is sometimes a vowel, sometimes not\n", args[0])
+// 	} else {
+// 		return fmt.Sprintf("%q is a consonant\n", args[0])
+// 	}
+// }
+
+// func main () {
+// args := os.Args[1:]
+
+// 	if len(args) != 1 || len(args[0]) != 1 {
+// 		 fmt.Printf("Give me a letter\n")
+// 	} else {
+// 		result := isVowel(args[0])
+// 		fmt.Println(result)
+// 	}
+// }
+
+	func passwordProtect(args []string) string {
+		if args[0] == "jack" && args[1] == "1888" {
+			return fmt.Sprintf("Access granted for %q", args[0])
+		} else if args[0] == "jack" && args[1] != "1888" {
+			return fmt.Sprintf("Invalid password for %q", args[0])
+		} else {
+			return fmt.Sprintf("Access denied for %q", args[0])
+		}
 	}
-}
 
 func main () {
-	args := os.Args[1:]
+		args := os.Args[1:]
 
-		if len(args) != 1 || len(args[0]) != 1 {
-			 fmt.Printf("Give me a letter\n")
+		if len(args) != 2 {
+			fmt.Println("Usage: [username] [password]")
+			return
 		} else {
-			result := isVowel(args[0])
+			result := passwordProtect(args)
 			fmt.Println(result)
 		}
+
 }
